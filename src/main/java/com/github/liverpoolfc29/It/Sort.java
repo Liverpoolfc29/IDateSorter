@@ -3,47 +3,57 @@ package com.github.liverpoolfc29.It;
 import com.github.liverpoolfc29.It.Data.IDateSorter;
 
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.*;
 
 public class Sort implements IDateSorter {
+    private List<LocalDate> tempListWithLetterR;
+    private List<LocalDate> tempListWithoutLetterR;
+    private final List<LocalDate> localDates;
+
+    public Sort(List<LocalDate> localDateList) {
+        localDates = new ArrayList<>(localDateList.size());
+    }
 
     @Override
     public Collection<LocalDate> sortDates(List<LocalDate> unsortedDates) {
-        List<LocalDate> localDatesWithLetterR = sortMonthWithLetterR(unsortedDates);
-        List<LocalDate> localDateListWithoutLetterR = sortMonthWithoutLetterR(unsortedDates);
-        sortByMonth(localDatesWithLetterR);
+        sortMonthWithLetter(unsortedDates);
+        sortByMonthAscend(tempListWithLetterR);
+        sortByMonthDescend(tempListWithoutLetterR);
 
-        return localDatesWithLetterR;
+        return localDates;
     }
 
-    private List<LocalDate> sortMonthWithLetterR(List<LocalDate> unsortList) {
-        List<LocalDate> tempListWithLetterR = new ArrayList<>();
+    private void sortMonthWithLetter(List<LocalDate> unsortList) {
+        tempListWithoutLetterR = new ArrayList<>();
+        tempListWithLetterR = new ArrayList<>();
         for (LocalDate localDate : unsortList) {
             String monthName = localDate.getMonth().toString().toLowerCase();
             if (monthName.contains("r")) {
                 tempListWithLetterR.add(localDate);
-            }
-        }
-        return tempListWithLetterR;
-    }
-
-    private List<LocalDate> sortMonthWithoutLetterR(List<LocalDate> unsortList) {
-        List<LocalDate> tempListWithoutLetterR = new ArrayList<>();
-        for (LocalDate localDate : unsortList) {
-            String monthName = localDate.getMonth().toString().toLowerCase();
-            if (!monthName.contains("r")) {
+            } else {
                 tempListWithoutLetterR.add(localDate);
             }
         }
-        return tempListWithoutLetterR;
     }
 
-    private void sortByMonth(List<LocalDate> list) {
+    private void sortByMonthAscend(List<LocalDate> list) {
         LocalDate templocalDate;
         for (int i = 0; i < list.size(); i++) {
             for (int j = 1; j < (list.size() - i); j++) {
                 if (list.get(j - 1).getMonth().getValue() > list.get(j).getMonth().getValue()) {
+                    templocalDate = list.get(j - 1);
+                    list.set(j - 1, list.get(j));
+                    list.set(j, templocalDate);
+                }
+            }
+        }
+    }
+
+    private void sortByMonthDescend(List<LocalDate> list) {
+        LocalDate templocalDate;
+        for (int i = 0; i < list.size(); i++) {
+            for (int j = 1; j < (list.size() - i); j++) {
+                if (list.get(j - 1).getMonth().getValue() < list.get(j).getMonth().getValue()) {
                     templocalDate = list.get(j - 1);
                     list.set(j - 1, list.get(j));
                     list.set(j, templocalDate);

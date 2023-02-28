@@ -11,24 +11,27 @@ import java.util.List;
 public class MainClass {
 
     public static void main(String[] args) {
-        LocalDate january = LocalDate.of(2023, 1, 1);
-        LocalDate february = LocalDate.of(2023, 2, 1);
-        LocalDate march = LocalDate.of(2023, 3, 1);
-        LocalDate april = LocalDate.of(2023, 4, 1);
-        LocalDate may = LocalDate.of(2023, 5, 1);
-        LocalDate june = LocalDate.of(2023, 6, 1);
-        LocalDate july = LocalDate.of(2023, 7, 1);
-        LocalDate august = LocalDate.of(2023, 8, 1);
-        LocalDate september = LocalDate.of(2023, 9, 1);
-        LocalDate october = LocalDate.of(2023, 10, 1);
-        LocalDate november = LocalDate.of(2023, 11, 1);
-        LocalDate december = LocalDate.of(2023, 12, 1);
+        LocalDate january = LocalDate.of(2023, 1, 2);
+        LocalDate february = LocalDate.of(2023, 2, 3);
+        LocalDate march = LocalDate.of(2023, 3, 4);
+        LocalDate april = LocalDate.of(2023, 4, 5);
+        LocalDate may = LocalDate.of(2023, 5, 6);
+        LocalDate june = LocalDate.of(2023, 6, 7);
+        LocalDate july = LocalDate.of(2023, 7, 8);
+        LocalDate august = LocalDate.of(2023, 8, 9);
+        LocalDate september = LocalDate.of(2023, 9, 10);
+        LocalDate october = LocalDate.of(2023, 10, 11);
+        LocalDate november = LocalDate.of(2023, 11, 12);
+        LocalDate december = LocalDate.of(2023, 12, 13);
 
         List<LocalDate> localDateList = new ArrayList<>(Arrays.asList(february, march, january, april, may, june, july, august, september, october, november, december));
 
-        Sort sort = new Sort();
-        Collection<LocalDate> localDates = sort.sortDates(localDateList);
-        System.out.println(localDates);
+        Sort sort = new Sort(localDateList);
+        //sort.sortByMonthAscend(localDateList);
+        System.out.println(localDateList);
+        //sort.sortByMonthDescend(localDateList);
+        System.out.println(localDateList);
+        sort.sortDates(localDateList);
     }
 
 }
