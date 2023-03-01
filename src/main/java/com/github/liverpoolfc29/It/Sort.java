@@ -8,10 +8,9 @@ import java.util.*;
 public class Sort implements IDateSorter {
     private List<LocalDate> tempListWithLetterR;
     private List<LocalDate> tempListWithoutLetterR;
-    private final List<LocalDate> localDates;
+    private final List<LocalDate> localDates = new ArrayList<>(12);
 
-    public Sort(List<LocalDate> localDateList) {
-        localDates = new ArrayList<>(localDateList.size());
+    public Sort() {
     }
 
     @Override
@@ -19,7 +18,20 @@ public class Sort implements IDateSorter {
         sortMonthWithLetter(unsortedDates);
         sortByMonthAscend(tempListWithLetterR);
         sortByMonthDescend(tempListWithoutLetterR);
-
+        int count = 1;
+        for (int i = 0; i < 12; i++) {
+            if (count == tempListWithLetterR.size() + tempListWithoutLetterR.size() - 1) {
+                break;
+            }
+            int month = tempListWithLetterR.get(count - 1).getMonth().getValue();
+            if (month == i + 1) {
+                localDates.add(tempListWithLetterR.get(count - 1));
+                count++;
+            }
+            if (i == 5) {
+                localDates.addAll(count - 1, tempListWithoutLetterR);
+            }
+        }
         return localDates;
     }
 

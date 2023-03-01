@@ -25,13 +25,16 @@ public class MainClass {
         LocalDate december = LocalDate.of(2023, 12, 13);
 
         List<LocalDate> localDateList = new ArrayList<>(Arrays.asList(february, march, january, april, may, june, july, august, september, october, november, december));
+        List<LocalDate> localDateList1 = new ArrayList<>(Arrays.asList(may,august, january, february, october, november));
+        List<LocalDate> localDateList2 = new ArrayList<>(Arrays.asList(may, june, october, december));
 
-        Sort sort = new Sort(localDateList);
-        //sort.sortByMonthAscend(localDateList);
+        Sort sort = new Sort();
+
         System.out.println(localDateList);
-        //sort.sortByMonthDescend(localDateList);
         System.out.println(localDateList);
-        sort.sortDates(localDateList);
+
+        Collection<LocalDate> localDates = sort.sortDates(localDateList);
+        System.out.println(localDates);
     }
 
 }
