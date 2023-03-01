@@ -31,7 +31,6 @@ public class MainClass {
         Sort sort = new Sort();
 
         System.out.println(localDateList);
-        System.out.println(localDateList);
 
         Collection<LocalDate> localDates = sort.sortDates(localDateList);
         System.out.println(localDates);
