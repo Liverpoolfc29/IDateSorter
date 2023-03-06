@@ -27,14 +27,18 @@ public class Solution {
                 august, september, october, november, december));
 
         List<LocalDate> dates_1 = new ArrayList<>(Arrays.asList(january, march, april, may, june,
-                august, september, october,  december));
+                august, september, october, december));
+
+        List<LocalDate> dates_2 = new ArrayList<>(Arrays.asList(january, april, june,
+                august, september, december));
 
         DateSorter sorter = new DateSorter();
-        Collection<LocalDate> localDates = sorter.sortDates(dates_1);
+        Collection<LocalDate> localDates = sorter.sortDates(dates_2);
 
         System.out.println(localDates);
     }
 }
+
 class DateSorter {
     public Collection<LocalDate> sortDates(List<LocalDate> unsortedDates) {
         List<LocalDate> rDates = new ArrayList<>();
