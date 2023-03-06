@@ -1,6 +1,6 @@
-package com.github.liverpoolfc29.It;
+package com.github.liverpoolfc29.It.My_Solution;
 
-import com.github.liverpoolfc29.It.Data.IDateSorter;
+import com.github.liverpoolfc29.It.My_Solution.Data.IDateSorter;
 
 import java.time.LocalDate;
 import java.util.*;
